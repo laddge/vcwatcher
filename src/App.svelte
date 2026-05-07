@@ -11,6 +11,7 @@
       display_name: string
       avatar: string
     }
+    nick: string
   }
 
   type VoiceState = {
@@ -67,7 +68,7 @@
       <div class="flex items-center gap-6">
         <img src={`https://cdn.discordapp.com/avatars/${v.member.user.id}/${v.member.user.avatar}.webp`} alt={v.member.user.id} class="h-20 w-20 rounded-full" />
         <div class="break-all">
-          <div class="text-4xl">{v.member.user.display_name || v.member.user.username}</div>
+          <div class="text-4xl">{v.member.nick || v.member.user.display_name || v.member.user.username}</div>
           <div class="text-2xl">@{v.member.user.username}</div>
         </div>
         <div class="grow flex justify-end gap-4">
