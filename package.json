@@ -10,6 +10,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.105",
+    "@iconify/svelte": "^5.2.1",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@tsconfig/svelte": "^5.0.8",
     "@types/node": "^24.12.2",
@@ -20,6 +22,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
+    "date-fns": "^4.1.0",
     "tailwindcss": "^4.2.4"
   }
 }
