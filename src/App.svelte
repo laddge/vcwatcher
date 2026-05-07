@@ -57,7 +57,7 @@
 
 <main>
   <div class="p-6 text-4xl font-mono font-bold flex items-center justify-between bg-base-200 sticky top-0">
-    <div>{now && format(now, 'HH:mm')}</div>
+    <div>{now && format(now, 'HH:mm:ss')}</div>
     <div class="flex items-center gap-2">
       <Icon icon="lucide:user" width="44" height="44" />
       {voiceStates.length}
