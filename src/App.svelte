@@ -32,6 +32,7 @@
   onMount(() => {
     setInterval(() => now = new Date, 100)
     const hash = window.location.hash.substring(1).split(',')
+    if (hash[2] == 'hidecursor') document.body.style.cursor = 'none'
     const d = new Discord(hash[0])
     d.addEventListener('VOICE_STATE_UPDATE', ev => {
       const { detail } = ev as CustomEvent
