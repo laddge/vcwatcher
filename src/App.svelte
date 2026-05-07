@@ -22,6 +22,7 @@
     self_mute: boolean
     self_video: boolean
     self_stream?: boolean
+    connected_at: number
     member: Member
   }
 
@@ -61,31 +62,31 @@
     </div>
   </div>
   <div class="p-8 flex flex-col gap-6">
-    {#each voiceStates as v}
+    {#each voiceStates.toSorted((a, b) => b.connected_at - a.connected_at) as v}
       <div class="flex items-center gap-6">
-        <img src={`https://cdn.discordapp.com/avatars/${v.member.user.id}/${v.member.user.avatar}.webp`} alt={v.member.user.id} class="h-24 w-24 rounded-full" />
+        <img src={`https://cdn.discordapp.com/avatars/${v.member.user.id}/${v.member.user.avatar}.webp`} alt={v.member.user.id} class="h-20 w-20 rounded-full" />
         <div class="break-all">
-          <div class="text-5xl">{v.member.user.display_name || v.member.user.username}</div>
+          <div class="text-4xl">{v.member.user.display_name || v.member.user.username}</div>
           <div class="text-2xl">@{v.member.user.username}</div>
         </div>
         <div class="grow flex justify-end gap-4">
           {#if v.deaf}
-            <Icon icon="lucide:headphone-off" width="48" height="48" class="text-red-400" />
+            <Icon icon="lucide:headphone-off" width="44" height="44" class="text-red-400" />
           {/if}
           {#if v.mute}
-            <Icon icon="lucide:mic-off" width="48" height="48" class="text-red-400" />
+            <Icon icon="lucide:mic-off" width="44" height="44" class="text-red-400" />
           {/if}
           {#if v.self_deaf}
-            <Icon icon="lucide:headphone-off" width="48" height="48" />
+            <Icon icon="lucide:headphone-off" width="44" height="44" />
           {/if}
           {#if v.self_mute}
-            <Icon icon="lucide:mic-off" width="48" height="48" />
+            <Icon icon="lucide:mic-off" width="44" height="44" />
           {/if}
           {#if v.self_video}
-            <Icon icon="lucide:video" width="48" height="48" />
+            <Icon icon="lucide:video" width="44" height="44" />
           {/if}
           {#if v.self_stream}
-            <Icon icon="lucide:monitor" width="48" height="48" />
+            <Icon icon="lucide:monitor" width="44" height="44" />
           {/if}
         </div>
       </div>
