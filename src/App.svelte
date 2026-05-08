@@ -66,7 +66,7 @@
   <div class="p-8 flex flex-col gap-6">
     {#each voiceStates.toSorted((a, b) => b.connected_at - a.connected_at) as v}
       <div class="flex items-center gap-6">
-        <img src={`https://cdn.discordapp.com/avatars/${v.member.user.id}/${v.member.user.avatar}.webp`} alt={v.member.user.id} class="h-20 w-20 rounded-full" />
+        <img src={`https://cdn.discordapp.com/avatars/${v.member.user.id}/${v.member.user.avatar}.png?size=80`} alt={v.member.user.id} class="h-20 w-20 rounded-full" />
         <div class="break-all">
           <div class="text-4xl">{v.member.nick || v.member.user.display_name || v.member.user.username}</div>
           <div class="text-2xl">@{v.member.user.username}</div>
