@@ -53,8 +53,6 @@ export class Discord extends EventTarget {
         },
       }))
     }
-    this.ws.onclose = () => {
-      this.start()
-    }
+    this.ws.onclose = () => setTimeout(this.start, 10000)
   }
 }
