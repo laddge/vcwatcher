@@ -29,12 +29,22 @@
 
   let now = $state<Date>()
   let voiceStates = $state<VoiceState[]>([])
+  let d = $state<Discord>()
+  let username = $state<string>()
 
   onMount(() => {
     setInterval(() => now = new Date, 100)
     const hash = window.location.hash.substring(1).split(',')
     if (hash[2] == 'hidecursor') document.body.style.cursor = 'none'
-    const d = new Discord(hash[0])
+    d = new Discord(hash[0])
+    d.addEventListener('READY', ev =>  {
+      const { detail } = ev as CustomEvent
+      username = detail.user.username
+      d.ws.addEventListener('close', _ => {
+        username = ''
+        voiceStates = []
+      })
+    })
     d.addEventListener('VOICE_STATE_UPDATE', ev => {
       const { detail } = ev as CustomEvent
       if (detail.channel_id == hash[1]) {
@@ -59,6 +69,7 @@
   <div class="p-6 text-4xl font-mono font-bold flex items-center justify-between bg-base-200 sticky top-0">
     <div>{now && format(now, 'HH:mm:ss')}</div>
     <div class="flex items-center gap-2">
+      <div class="text-sm opacity-50">{username || d && ['CONNECTING', 'OPEN', 'CLOSING', 'CLOSED'][d.ws.readyState]}</div>
       <Icon icon="lucide:user" width="44" height="44" />
       {voiceStates.length}
     </div>
