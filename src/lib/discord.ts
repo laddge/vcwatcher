@@ -17,6 +17,9 @@ export class Discord extends EventTarget {
       this.#seq = data.s
       // Hello
       if (data.op == 10) {
+        if (this.#timer) {
+          clearInterval(this.#timer)
+        }
         this.#timer = setInterval(() => {
           if (!this.#ackHeartbeat) {
             this.#ackHeartbeat = true
@@ -53,6 +56,6 @@ export class Discord extends EventTarget {
         },
       }))
     }
-    this.ws.onclose = () => setTimeout(this.start, 10000)
+    this.ws.onclose = () => setTimeout(() => this.start(), 10000)
   }
 }
